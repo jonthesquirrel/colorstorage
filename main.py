@@ -9,7 +9,7 @@ textures = 'assets/minecraft/textures/block'
 with open('deny_blocks.txt') as reader:
     deny_blocks = reader.read().splitlines()
 
-# Find png filenames in textures directory and extract block ids
+# Find png filenames in textures directory and remove .png extension
 block_ids = [filename[:-4] for filename in listdir(textures) if filename.endswith('.png')]
 
 # Remove denied blocks from block id list
