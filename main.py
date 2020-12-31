@@ -3,7 +3,7 @@ from PIL import Image, ImageColor, ImageStat
 
 # print average HSV of image
 
-im = Image.open('assets/minecraft/textures/block/acacia_planks.png')
+im = Image.open('assets/minecraft/textures/block/acacia_log.png')
 
 stat = ImageStat.Stat(im)
 
@@ -18,6 +18,6 @@ h = interp(h, [0, 255], [0, 360])[0]
 s = interp(s, [0, 255], [0, 100])[0]
 v = interp(v, [0, 255], [0, 100])[0]
 
-hsv_string = f'hsv({round(h)}, {round(s)}%, {round(v)}%)'
+hsv_string = f'hsv({round(h)},{round(s)}%,{round(v)}%)'
 
 print (hsv_string)
