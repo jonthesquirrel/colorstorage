@@ -5,12 +5,18 @@ from PIL import Image, ImageStat
 # Directory for block textures extracted from version jar
 textures = 'assets/minecraft/textures/block'
 
-# Find png files in textures directory
-files = [file for file in listdir(textures) if file.endswith('.png')]
+# Find png filenames in textures directory
+filenames = [filename for filename in listdir(textures) if filename.endswith('.png')]
 
-for file in files:
+# Convert HSV into hsv(360°, 100%, 100%) color code string
+def hsv_string (h, s, v):
+    hsv_string = f'hsv({round(h)}, {round(s)}%, {round(v)}%)'
+    return (hsv_string)
+
+# Get average HSV color from image
+def avg_hsv(filename):
     # Open Minecraft texture as RGBA image
-    im = Image.open(f'{textures}/{file}')
+    im = Image.open(f'{textures}/{filename}')
 
     # Convert RGBA image into HSV (Hue, Saturation, Value) image
     im = im.convert('HSV')
@@ -29,7 +35,11 @@ for file in files:
     h = interp(h, [0, 255], [0, 360])[0]
     s = interp(s, [0, 255], [0, 100])[0]
     v = interp(v, [0, 255], [0, 100])[0]
+    
+    # Attach filename name
+    return {'filename': filename, 'h': h, 's': s, 'v': v, 'hsv_string': hsv_string(h, s, v)}
 
-    # Print average HSV of image as hsv() color code
-    hsv_string = f'hsv({round(h)}, {round(s)}%, {round(v)}%)'
-    print (f'{file} : {hsv_string}')
+colors = map(avg_hsv, filenames)
+
+for color in colors:
+    print(f"{color['filename']} : {color['hsv_string']}")
