@@ -43,8 +43,8 @@ def avg_hsv(filename):
 # Make a list of blocks with their average colors attached
 blocks = map(avg_hsv, filenames)
 
-# Sort blocks by hue
-blocks = sorted(blocks, key = lambda block: block['hue'])
+# Sort blocks by hue, then saturation, then value
+blocks = sorted(blocks, key = lambda block: (block['hue'], block['sat'], block['val']))
 
 # Print blocks with their color
 for block in blocks:
