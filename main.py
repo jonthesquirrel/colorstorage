@@ -36,10 +36,12 @@ def avg_hsv(filename):
     s = interp(s, [0, 255], [0, 100])[0]
     v = interp(v, [0, 255], [0, 100])[0]
     
-    # Attach filename name
+    # Attach filename
     return {'filename': filename, 'h': h, 's': s, 'v': v, 'hsv_string': hsv_string(h, s, v)}
 
+# Make a list of files with their average colors attached
 colors = map(avg_hsv, filenames)
 
+# Print list of files with colors
 for color in colors:
     print(f"{color['filename']} : {color['hsv_string']}")
