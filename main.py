@@ -5,8 +5,8 @@ from PIL import Image, ImageStat
 # Directory for block textures extracted from version jar
 textures = 'assets/minecraft/textures/block'
 
-# Find png filenames in textures directory
-filenames = [filename for filename in listdir(textures) if filename.endswith('.png')]
+# Find png filenames in textures directory and extract block ids
+block_ids = [filename[:-4] for filename in listdir(textures) if filename.endswith('.png')]
 
 # Convert HSV into hsv(360°, 100%, 100%) color code string
 def hsv_string (h, s, v):
@@ -14,9 +14,9 @@ def hsv_string (h, s, v):
     return (hsv_string)
 
 # Get average HSV color from image
-def avg_hsv(filename):
+def avg_hsv(block_id):
     # Open Minecraft texture as RGBA image
-    im = Image.open(f'{textures}/{filename}')
+    im = Image.open(f'{textures}/{block_id}.png')
 
     # Convert RGBA image into HSV (Hue, Saturation, Value) image
     im = im.convert('HSV')
@@ -37,15 +37,15 @@ def avg_hsv(filename):
     s = interp(s, [0, 255], [0, 100])[0]
     v = interp(v, [0, 255], [0, 100])[0]
     
-    # Attach filename
-    return {'filename': filename, 'hue': h, 'sat': s, 'val': v, 'hsv_string': hsv_string(h, s, v)}
+    # Collect this block's data in a dictionary
+    return {'block_id': block_id, 'hue': h, 'sat': s, 'val': v, 'hsv_string': hsv_string(h, s, v)}
 
-# Make a list of blocks with their average colors attached
-blocks = map(avg_hsv, filenames)
+# Make a list of blocks and their average colors
+blocks = map(avg_hsv, block_ids)
 
 # Sort blocks by hue, then saturation, then value
 blocks = sorted(blocks, key = lambda block: (block['hue'], block['sat'], block['val']))
 
-# Print blocks with their color
+# Print blocks and their color
 for block in blocks:
-    print(f"{block['filename']} : {block['hsv_string']}")
+    print(f"{block['block_id']} : {block['hsv_string']}")
