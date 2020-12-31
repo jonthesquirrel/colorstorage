@@ -5,8 +5,15 @@ from PIL import Image, ImageStat
 # Directory for block textures extracted from version jar
 textures = 'assets/minecraft/textures/block'
 
+# List of blocks to deny loading
+with open('deny_blocks.txt') as reader:
+    deny_blocks = reader.read().splitlines()
+
 # Find png filenames in textures directory and extract block ids
 block_ids = [filename[:-4] for filename in listdir(textures) if filename.endswith('.png')]
+
+# Remove denied blocks from block id list
+block_ids = [id for id in block_ids if not id in deny_blocks]
 
 # Convert HSV into hsv(360°, 100%, 100%) color code string
 def hsv_string (h, s, v):

@@ -1,0 +1,12 @@
+destroy_stage_0
+destroy_stage_1
+destroy_stage_2
+destroy_stage_3
+destroy_stage_4
+destroy_stage_5
+destroy_stage_6
+destroy_stage_7
+destroy_stage_8
+destroy_stage_9
+redstone_dust_overlay
+water_overlay
