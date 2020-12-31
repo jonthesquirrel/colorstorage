@@ -1,5 +1,5 @@
 from numpy import interp
-from PIL import Image, ImageColor, ImageStat
+from PIL import Image, ImageStat
 
 # Open Minecraft texture as RGBA image
 im = Image.open('assets/minecraft/textures/block/acacia_log.png')
