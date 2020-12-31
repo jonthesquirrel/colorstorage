@@ -31,7 +31,8 @@ def avg_hsv(filename):
     s = ImageStat.Stat(sat_channel).mean
     v = ImageStat.Stat(val_channel).mean
 
-    # Scale from 8-bit channel (255, 255, 255) to hsv(360°, 100%, 100%) range
+    # Scale from 8-bit channel range (255, 255, 255) to hsv(360°, 100%, 100%) range
+    # These are converted to floats
     h = interp(h, [0, 255], [0, 360])[0]
     s = interp(s, [0, 255], [0, 100])[0]
     v = interp(v, [0, 255], [0, 100])[0]
