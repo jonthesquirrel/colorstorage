@@ -2,7 +2,7 @@ from numpy import interp
 from os import listdir
 from PIL import Image, ImageStat
 
-# Block textures directory extracted from version jar
+# Directory for block textures extracted from version jar
 textures = 'assets/minecraft/textures/block'
 
 # Find png files in textures directory
