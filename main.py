@@ -22,6 +22,6 @@ h = interp(h, [0, 255], [0, 360])[0]
 s = interp(s, [0, 255], [0, 100])[0]
 v = interp(v, [0, 255], [0, 100])[0]
 
-# Print average HSV of image as hsv() code
+# Print average HSV of image as hsv() color code
 hsv_string = f'hsv({round(h)}, {round(s)}%, {round(v)}%)'
 print (hsv_string)
