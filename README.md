@@ -2,6 +2,8 @@
 Color map of all minecraft blocks
 
 ## Install Dependencies
+> NOTE: if you are on Windows, make sure you have Python version 3 installed, and replace `python3` with `python` in these instructions
+
 ```
 python3 -m pip install --upgrade pip
 python3 -m pip install --upgrade Pillow numpy
