@@ -5,8 +5,6 @@ from PIL import Image, ImageColor, ImageStat
 
 im = Image.open('assets/minecraft/textures/block/acacia_log.png')
 
-stat = ImageStat.Stat(im)
-
 im = im.convert('HSV')
 hue_channel = im.getchannel('H')
 sat_channel = im.getchannel('S')
@@ -19,5 +17,4 @@ s = interp(s, [0, 255], [0, 100])[0]
 v = interp(v, [0, 255], [0, 100])[0]
 
 hsv_string = f'hsv({round(h)}, {round(s)}%, {round(v)}%)'
-
 print (hsv_string)
