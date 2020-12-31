@@ -2,7 +2,11 @@
 Color map of all minecraft blocks
 
 ## Install Dependencies
-> NOTE: if you are on Windows, make sure you have Python version 3 installed, and replace `python3` with `python` in these instructions
+
+### Windows
+> Install [Python 3](https://www.python.org/downloads/windows/), and use `python` instead of `python3` in the following instructions
+### Mac
+> Even though mac comes with Python 3, install the latest Python 3 (Using [Homebrew](https://brew.sh/) is handy)
 
 ```
 python3 -m pip install --upgrade pip
