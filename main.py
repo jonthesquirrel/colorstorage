@@ -5,15 +5,29 @@ from PIL import Image, ImageStat
 # Directory for block textures extracted from version jar
 textures = 'assets/minecraft/textures/block'
 
-# List of blocks to deny loading
-with open('deny_blocks.txt') as reader:
-    deny_blocks = reader.read().splitlines()
+# Special case: animated blocks like crimson_stem are
+# taller than 64px: crop when compositing later?
+
+# List of blocks to allow loading
+# > Change this file for different lists
+with open('blocks_full.txt') as reader:
+    allow_blocks = reader.read().splitlines()
+
+# Unused because redundant
+# # List of blocks to deny loading
+# with open('blocks_deny.txt') as reader:
+#     deny_blocks = reader.read().splitlines()
 
 # Find png filenames in textures directory and remove .png extension
+# (Create list of all blocks)
 block_ids = [filename[:-4] for filename in listdir(textures) if filename.endswith('.png')]
 
-# Remove denied blocks from block id list
-block_ids = [id for id in block_ids if not id in deny_blocks]
+# Remove all blocks except those in allow list from block id list 
+block_ids = [id for id in block_ids if id in allow_blocks]
+
+# Unused because redundant
+# # Remove blocks in deny list from block id list
+# block_ids = [id for id in block_ids if not id in deny_blocks]
 
 # Convert HSV into hsv(360°, 100%, 100%) color code string
 def hsv_string (h, s, v):
